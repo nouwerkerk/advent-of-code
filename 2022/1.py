@@ -1,5 +1,6 @@
-input = "1000\n2000\n3000\n\n4000\n\n5000\n6000\n\n7000\n8000\n9000\n\n10000"
-split = input.split("\n\n")
+with open('input/1.txt', 'r') as file:
+    data = file.read()
+split = data.split('\n\n')
 
 maxCaloriesCarried = 0
 elfNum = -1
