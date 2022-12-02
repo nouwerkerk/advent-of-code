@@ -1,45 +1,14 @@
-# A = X = Rock (1)
-# B = Y = Paper (2)
-# C = Z = Scissor (3)
+def solve(data):
+    score = 0
+    for (v1, v2) in data:
+        score += v2
+        score += (v2 - v1 + 1) * 3 if abs(v2 - v1) in range (0, 2) else ((v2 - v1) / 2 + 1) * 3
+    return score
+
+valuedict = {'A': 1, 'B': 2, 'C': 3, 'X': 1, 'Y': 2, 'Z': 3}
 
 with open('input/2.txt', 'r') as file:
-    data = file.read()
-
-data = data.split('\n')
-
-#win = 6
-#tie = 3
-#lose = 0
-
-points = 0
-for d in data:
-    d = d.split(' ')
+    data = [(valuedict[l[0]], valuedict[l[2]]) for l in file.readlines()]
     
-    if d[1] == 'X':
-        points += 1
-        if d[0] == 'A':
-            points += 3
-        if d[0] == 'B':
-            points += 0
-        if d[0] == 'C':
-            points += 6
-            
-    if d[1] == 'Y':
-        points += 2
-        if d[0] == 'A':
-            points += 6
-        if d[0] == 'B':
-            points += 3
-        if d[0] == 'C':
-            points += 0
-            
-    if d[1] == 'Z':
-        points += 3
-        if d[0] == 'A':
-            points += 0
-        if d[0] == 'B':
-            points += 6
-        if d[0] == 'C':
-            points += 3
-
-print(points)
+print(solve(data))
+    
