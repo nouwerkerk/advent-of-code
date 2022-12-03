@@ -1,5 +1,6 @@
 with open('input/1.txt', 'r') as file:
     data = file.read()
+file.close()
 split = data.split('\n\n')
 
 maxCaloriesCarried = 0

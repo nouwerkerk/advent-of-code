@@ -7,6 +7,7 @@ for index, letter in enumerate(string.ascii_letters, 1):
 
 with open('input/3.txt', 'r') as file:
    data = [(l[:len(l) // 2], l[len(l) // 2:]) for l in file.read().splitlines()]
+file.close()
 
 #flatten sets into single list
 similarElems = [x for (a, b) in data for x in set(a).intersection(set(b))]

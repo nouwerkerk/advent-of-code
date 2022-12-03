@@ -9,6 +9,7 @@ valuedict = {'A': 1, 'B': 2, 'C': 3, 'X': 1, 'Y': 2, 'Z': 3}
 
 with open('input/2.txt', 'r') as file:
     data = [(valuedict[l[0]], valuedict[l[2]]) for l in file.readlines()]
-    
+file.close()
+
 print(solve(data))
     
