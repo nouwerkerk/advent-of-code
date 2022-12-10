@@ -1,13 +1,17 @@
-def getResult(data):
+def getResult(data, amountOfDistinct):
     for i, _ in enumerate(data):
-        if (i + 3 < len(data)):
-            letters = {data[i], data[i+1], data[i+2], data[i+3]}
-            if len(letters) == 4:
-                return i + 4
+        if (i + amountOfDistinct < len(data)):
+            letters = set()
+            for j in range(i, i + amountOfDistinct):
+                letters.add(data[j])
+                
+            if len(letters) == amountOfDistinct:
+                return i + amountOfDistinct
             
 
-with open('input/6.txt', 'r') as file:
+with open('example-input/6.txt', 'r') as file:
    data = file.readline()
 file.close()
 
-print(getResult(data))
+print(f"Part 1: {getResult(data, 4)}")
+print(f"Part 2: {getResult(data, 14)}")     

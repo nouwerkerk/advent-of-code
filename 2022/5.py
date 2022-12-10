@@ -24,29 +24,45 @@ def parseBlocks(blocks):
                 stacks[count].append(letter)
     
     return stacks
+
+def part1(stacks, moves):
+
+    for move in moves:
+        amount = move[0]
+        moveFrom = move[1]
+        moveTo = move[2]
+        for _ in range(amount):
+            movedBlock = stacks[moveFrom - 1].pop(0)
+            stacks[moveTo - 1].insert(0, movedBlock)
+
+    result = ''
+    for stack in stacks:
+        result += stack[0]
         
-with open('input/5.txt', 'r') as file:
+    return result
+
+def part2(stacks, moves):
+
+    for move in moves:
+        amount = move[0]
+        moveFrom = move[1]
+        moveTo = move[2]
+        for i in range(amount):
+            movedBlock = stacks[moveFrom - 1].pop(0)
+            stacks[moveTo - 1].insert(i, movedBlock)
+            
+    result = ''
+    for stack in stacks:
+        result += stack[0]
+        
+    return result
+        
+with open('example-input/5.txt', 'r') as file:
    data = [l for l in file.read().splitlines()]
 file.close()
 
 moves = [x for x in data if x.startswith('move')]
 blocks = [x for x in data if x.startswith('[') or x.startswith('  ')]
 
-stacks = parseBlocks(blocks)
-moves = parseMoves(moves)
-
-for move in moves:
-    amount = move[0]
-    moveFrom = move[1]
-    moveTo = move[2]
-    for _ in range(amount):
-        movedBlock = stacks[moveFrom - 1].pop(0)
-        stacks[moveTo - 1].insert(0, movedBlock)
-
-result = ''
-for stack in stacks:
-    result += stack[0]
-    
-print(result)
-    
-    
+print(f"Part 1: {part1(parseBlocks(blocks), parseMoves(moves))}")
+print(f"Part 2: {part2(parseBlocks(blocks), parseMoves(moves))}")   
