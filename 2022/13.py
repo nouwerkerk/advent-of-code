@@ -1,12 +1,6 @@
 import ast
 import itertools
 
-def add_indent(str, indent):
-    newStr = ''
-    for _ in range(0, indent):
-        newStr += ' '
-    return newStr + str
-
 def compareList(left, right, indent):
     #zip lists with, pad with None if unequal length
     zipLists = itertools.zip_longest(left, right)
