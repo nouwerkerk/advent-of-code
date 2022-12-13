@@ -1,7 +1,7 @@
 import ast
 import itertools
 
-def compareList(left, right, indent):
+def compareList(left, right):
     #zip lists with, pad with None if unequal length
     zipLists = itertools.zip_longest(left, right)
     
@@ -20,16 +20,16 @@ def compareList(left, right, indent):
         
         #if one is integer and other is list 
         elif type(zipLeft) == list and type(zipRight) == int:
-            x = compareList(zipLeft, [zipRight], indent=indent+4)
+            x = compareList(zipLeft, [zipRight])
             if x != None: return x
 
         elif type(zipLeft) == int and type(zipRight) == list:
-            x = compareList([zipLeft], zipRight, indent=indent+2)
+            x = compareList([zipLeft], zipRight)
             if x != None: return x
         
         #if both are lists
         else:
-            x = compareList(zipLeft, zipRight, indent=indent+2)
+            x = compareList(zipLeft, zipRight)
             if x != None: return x
     
     return None
@@ -46,7 +46,7 @@ def part1():
         pair1 = ast.literal_eval(splitted[0])
         pair2 = ast.literal_eval(splitted[1])
         
-        if compareList(pair1, pair2, indent=2):
+        if compareList(pair1, pair2):
             result += idx
     
     return result
@@ -68,7 +68,7 @@ def part2():
             idx = 0
             while idx < len(packets):
 
-                if compareList(item, packets[idx], 2) == True:
+                if compareList(item, packets[idx]) == True:
                     flag = True
                     packets.insert(idx, item)
                     break
