@@ -57,7 +57,7 @@ def calculate(isPart1=True):
     if not isPart1: result += 1 
     return result
     
-with open('real-input/14.txt', 'r') as file:
+with open('example-input/14.txt', 'r') as file:
     lines = [l for l in file.read().splitlines()]
 file.close()
 
